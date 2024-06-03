@@ -1,49 +1,93 @@
-.card {
-    position: relative;
-    width: 267.29px;
-    height: 255px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    box-shadow: 2px 2px 4px 0px #00000026;
-    background-color: #00000010;
-
-
-    .id {
-        font-family: Roboto;
-        font-size: 22px;
-        font-weight: 400;
-        line-height: 25.78px;
-        text-align: left;
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 10px;
-        color: #373299;
-    }
-
-    .img {
-        flex: 1 0 auto;
+div {
+    .regular-card {
+        position: relative;
+        width: 267.29px;
+        height: 255px;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        max-width: 85%;
-        max-height: 85%;
-    }
-
-    .name {
-        font-family: Roboto;
-        font-size: 22px;
-        font-weight: 400;
-        line-height: 25.78px;
-        text-align: left;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        text-align: center;
-        color: #373299;
-        text-transform: capitalize;
+        border-radius: 10px;
+        box-shadow: 2px 2px 4px 0px #00000026;
+        background-color: #00000010;
     }
 }
+
+
+
+.id {
+    font-family: Roboto;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 25.78px;
+    text-align: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px;
+    color: #373299;
+}
+
+.img {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 85%;
+    max-height: 85%;
+}
+
+.name {
+    font-family: Roboto;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 25.78px;
+    text-align: left;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: #373299;
+    text-transform: capitalize;
+}
+
+// .type {
+//     width: 100px;
+//     height: 35px;
+//     top: 277px;
+//     left: 37px;
+//     gap: 0px;
+//     border-radius: 9px 0px 0px 0px;
+//     opacity: 0px;
+// }
+// $pokemon-type-colors: (
+//     normal: #A8A77A,
+//     fire: #EE8130,
+//     water: #6390F0,
+//     electric: #F7D02C,
+//     grass: #7AC74C,
+//     ice: #96D9D6,
+//     fighting: #C22E28,
+//     poison: #A33EA1,
+//     ground: #E2BF65,
+//     flying: #A98FF3,
+//     psychic: #F95587,
+//     bug: #A6B91A,
+//     rock: #B6A136,
+//     ghost: #735797,
+//     dragon: #6F35FC,
+//     dark: #705746,
+//     steel: #B7B7CE,
+//     fairy: #D685AD
+// );
+
+// @each $type, $color in $pokemon-type-colors {
+//     .type {
+//         &.type-#{$type} {
+//             color: $color;
+//         }
+//     }
+// }
+
+
+// .description {}
