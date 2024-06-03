@@ -1,5 +1,4 @@
 import React from 'react';
-    
 import "./PokeCard.scss";
 
 function PokeCard({ props }) {
