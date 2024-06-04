@@ -1,5 +1,5 @@
 import React from 'react';
-import PokeTable from "./PokeTable/PokeTable.tsx";
+import PokeTable from "./components/PokeTable/PokeTable.tsx";
 
 function HomePage(){
 
