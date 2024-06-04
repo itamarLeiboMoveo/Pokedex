@@ -1,4 +1,3 @@
-import "./types.tsx";
 
 export async function getPokemonsList(){
     try {
@@ -45,8 +44,10 @@ async function fetchPokemons() {
             const data2 = await fetch(pokemonObj.url);
             const pokemonData = await data2.json();
             pokemonData.types.forEach((type) => {
-                typesArray.push(type.name)
+                console.log(typesArray);
+                typesArray.push(type.type.name)
             });
+            
             const stats = {
                 hp: pokemonData.stats[0].base_stat,
                 attack: pokemonData.stats[1].base_stat,

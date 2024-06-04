@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Container, StyledImg, ButtonContainer, StyledButton } from "../../styles/StyledNavBar.tsx"
+import { Container, StyledImg, ButtonContainer, StyledButton } from "../../styles/StyledNavBar.tsx";
 
 
 function NavBar() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import './types.tsx';
+import './pokemonTypes.tsx';
 
 type StatsProps = {
   stats: stats;
@@ -8,6 +8,7 @@ type StatsProps = {
 function StatsDisplay({ stats }){
   return (
     <div className="stats">
+      <h3>stats:</h3>
       <div className="stat">
         <strong>HP:</strong> {stats.hp}
       </div>
