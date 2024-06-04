@@ -4,7 +4,7 @@ import fetchPokemons from "../../../../services/FetchService.tsx";
 import "../../../../services/types.tsx";
 import "./PokeTable.scss"
 
-function PokeTable() {
+function PokeTable( {filteredPokemons} ) {
     const [pokeArr, setPokeArr] = useState<pokemon[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -16,6 +16,13 @@ function PokeTable() {
         }
         getPokemons();
     }, []);
+
+    useEffect(() => {
+        if (filteredPokemons.length > 0) {
+            setPokeArr(filteredPokemons);
+        }
+    }, [filteredPokemons]);
+
 
     if (loading) {
         return <div>Loading...</div>;

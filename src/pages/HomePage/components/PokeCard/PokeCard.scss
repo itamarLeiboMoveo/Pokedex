@@ -10,6 +10,11 @@ div {
         border-radius: 10px;
         box-shadow: 2px 2px 4px 0px #00000026;
         background-color: #00000010;
+
+        &:hover {
+            cursor: pointer;
+            scale: 1.1;
+        }
     }
 }
 

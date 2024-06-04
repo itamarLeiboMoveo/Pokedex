@@ -3,31 +3,32 @@ import { useNavigate } from 'react-router-dom';
 import fetchPokemons, { getPokemonsDict, getPokemonsList } from '../../../../services/FetchService.tsx';
 import './SearchBar.scss';
 
-function SearchBar() {
-    // const [pokeDictionary, setPokeDictionary] = useState<object>({}); //dict of (key: name, value: url)
-    // const [pokeName, setPokeName] = useState("");
-    // const navigate = useNavigate();
-    // useEffect(() => {
-    //     async function getPokemons() {
-    //         const data = await getPokemonsDict();
-    //         if(data)
-    //             setPokeDictionary(data);
-    //     }
-    //     getPokemons();
-    // }, []);
+function SearchBar({ setFilteredPokemons}) {
     const [pokeArr, setPokeArr] = useState<pokemon[]>([]);
     const [pokeName, setPokeName] = useState('');
-    // const [loading, setLoading] = useState(true);
+    // const [filteredPokemons, setFilteredPokemons] = useState<pokemon[]>([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         async function getPokemons() {
             const data = await fetchPokemons();
             setPokeArr(data);
-            // setLoading(false);
+            setFilteredPokemons(data);
         }
         getPokemons();
-    }, []);
+    }, [setFilteredPokemons]);
+
+    useEffect(() => {
+        const filterPokemons = () => {
+            if (pokeName === '') {
+                setFilteredPokemons(pokeArr);
+            } else {
+                const filtered = pokeArr.filter(poke => poke.name.toLowerCase().startsWith(pokeName.toLowerCase()));
+                setFilteredPokemons(filtered);
+            }
+        };
+        filterPokemons();
+    }, [pokeName, pokeArr, setFilteredPokemons]);
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -36,13 +37,13 @@ function SearchBar() {
         if (matchedPoke) {
             navigate('/internal-page', { state: matchedPoke });
         } else {
-            console.log(pokeName);
             console.log('No match found');
         }
     }
 
     function handleInput(event){
         setPokeName(event.target.value);
+
     }
 
     return (
