@@ -3,8 +3,6 @@ import { Outlet, useNavigation } from 'react-router-dom';
 
 
 function RootLayout() {
-  // const navigation = useNavigation();
-
   return (
     <>
         <Outlet />

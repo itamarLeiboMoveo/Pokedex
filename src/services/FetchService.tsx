@@ -1,17 +1,19 @@
-import "./types.tsx";
+import "./pokemonTypes.tsx";
 async function fetchPokemons() {
     const pokemons: pokemon[] = [];
     try {
         const data = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100&offset=0');
         const pokemonList = await data.json();
-        const typesArray: string[] = [];
         for (let i = 0; i < 100; i++) {
+            const typesArray: string[] = [];
             const pokemonObj = pokemonList.results[i]; // Accessing the first pokemon in the list
             const data2 = await fetch(pokemonObj.url);
             const pokemonData = await data2.json();
             pokemonData.types.forEach((type) => {
-                typesArray.push(type.name)
+                console.log(typesArray);
+                typesArray.push(type.type.name)
             });
+            
             const stats = {
                 hp: pokemonData.stats[0].base_stat,
                 attack: pokemonData.stats[1].base_stat,

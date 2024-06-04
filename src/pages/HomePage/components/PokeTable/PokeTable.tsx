@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PokeCard from "../PokeCard/PokeCard.tsx";
 import fetchPokemons from "../../../../services/FetchService.tsx";
-import "../../../../services/types.tsx";
+import "../../../../services/pokemonTypes.tsx";
 import "./PokeTable.scss"
 
 function PokeTable() {
