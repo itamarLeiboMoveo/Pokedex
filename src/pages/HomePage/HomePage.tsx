@@ -1,10 +1,16 @@
 import React from 'react';
 import PokeTable from "./components/PokeTable/PokeTable.tsx";
+import NavBar from '../../components/NavBar/NavBar.tsx';
+import SearchBar from './components/SearchBar/SearchBar.tsx';
 
-function HomePage(){
+function HomePage() {
 
     return (
-        <PokeTable />
+        <>
+            <NavBar />
+            <SearchBar />
+            <PokeTable />
+        </>
     );
 }
 

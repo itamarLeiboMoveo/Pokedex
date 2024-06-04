@@ -1,12 +1,47 @@
 import "./types.tsx";
-async function fetchPokemons() {
-    const pokemons: pokemon[] = [];
+
+export async function getPokemonsList(){
+    try {
+        const data = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100&offset=0');
+        const pokemonList = await data.json(); 
+        return pokemonList.results;
+    }
+    catch (error) {
+        console.error('Error fetching Pokémon data:', error);
+    }
+}
+
+export async function getPokemonsDict(){
     try {
         const data = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100&offset=0');
         const pokemonList = await data.json();
+        const dict = {};
+        pokemonList.results.forEach((name, url) => dict[name] = url);
+        return dict; //returns a dictionary of names and url's
+    }
+    catch (error) {
+        console.error('Error fetching Pokémon data:', error);
+    }
+}
+
+export async function getPokemonObj(name){
+    try {
+        const data = await fetch('https://pokeapi.co/api/v2/pokemon/' + name);
+        const pokemonList = await data.json(); 
+        return pokemonList.results;
+    }
+    catch (error) {
+        console.error('Error fetching Pokémon data:', error);
+    }
+}
+
+async function fetchPokemons() {
+    const pokemons: pokemon[] = [];
+    try {
+        const pokemonList = await getPokemonsList(); 
         const typesArray: string[] = [];
         for (let i = 0; i < 100; i++) {
-            const pokemonObj = pokemonList.results[i]; // Accessing the first pokemon in the list
+            const pokemonObj = pokemonList[i];
             const data2 = await fetch(pokemonObj.url);
             const pokemonData = await data2.json();
             pokemonData.types.forEach((type) => {
