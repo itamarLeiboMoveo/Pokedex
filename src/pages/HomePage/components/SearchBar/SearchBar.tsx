@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import fetchPokemons, { getPokemonsDict, getPokemonsList } from '../../../../services/FetchService.tsx';
+import { getPokemons, filterPokemons, filterTypes } from '../../../../services/SearchFilter.tsx';
 import './SearchBar.scss';
 import DropDown from './DropDown.tsx';
 
@@ -11,40 +11,15 @@ function SearchBar({ setFilteredPokemons }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        async function getPokemons() {
-            const data = await fetchPokemons();
-            setPokeArr(data);
-            setFilteredPokemons(data);
-        }
-        getPokemons();
+        getPokemons(setPokeArr, setFilteredPokemons);
     }, [setFilteredPokemons]);
 
     useEffect(() => {
-        const filterPokemons = () => {
-            if (pokeName === '') {
-                setFilteredPokemons(pokeArr);
-            } else {
-                const filteredPrefix = pokeArr.filter(poke => poke.name.toLowerCase().startsWith(pokeName.toLowerCase()));
-                const filtered = filteredPrefix.concat(pokeArr.filter(poke => 
-                    poke.name.toLowerCase().includes(pokeName.toLowerCase()) &&
-                    !filteredPrefix.includes(poke)));
-                setFilteredPokemons(filtered);
-            }
-        };
-        filterPokemons();
+        filterPokemons(pokeName, pokeArr, setFilteredPokemons);
     }, [pokeName, pokeArr, setFilteredPokemons]);
 
     useEffect(() => {
-        const filterTypes = () => {
-            if(selectedType === ''){
-                setFilteredPokemons(pokeArr);
-            }
-            else{
-                const filtered = pokeArr.filter(poke => poke.types.includes(selectedType));
-                setFilteredPokemons(filtered);
-            }
-        };
-        filterTypes();
+        filterTypes(selectedType, pokeArr, setFilteredPokemons);
     }, [selectedType, pokeArr, setFilteredPokemons]);
 
     function handleSubmit(event) {
@@ -52,7 +27,7 @@ function SearchBar({ setFilteredPokemons }) {
 
         const matchedPoke = pokeArr.find((poke) => poke.name === pokeName.toLowerCase());
         if (matchedPoke) {
-            navigate('/internal-page', { state: matchedPoke });
+            navigate('/internal-page/' + matchedPoke.id);
         } else {
             console.log('No match found');
         }
@@ -71,7 +46,7 @@ function SearchBar({ setFilteredPokemons }) {
         <div >
             <form className='search-container' onSubmit={handleSubmit}>
                 <input value={pokeName} type='text' onChange={handleInput} />
-                <button >Search</button>
+                <button className='search'>Search</button>
                 <DropDown value={selectedType} setDropDown={handleDropDown}/>
             </form>
         </div>

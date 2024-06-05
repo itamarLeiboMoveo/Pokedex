@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 
 
-function RootLayout() {
+function InternalRootLayout() {
   return (
     <>
         <Outlet />
@@ -10,4 +10,4 @@ function RootLayout() {
   );
 }
 
-export default RootLayout;
+export default InternalRootLayout;

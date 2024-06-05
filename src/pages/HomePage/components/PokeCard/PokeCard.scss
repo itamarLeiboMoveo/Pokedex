@@ -1,3 +1,5 @@
+@import '../../../../styles/styleVariables.scss';
+
 .description-card {
     position: relative;
     display: flex;
@@ -44,7 +46,7 @@
 
 
     .id {
-        font-family: Roboto;
+        font-family: $text-font;
         font-size: 22px;
         font-weight: 400;
         line-height: 25.78px;
@@ -53,7 +55,7 @@
         top: 0;
         left: 0;
         margin: 10px;
-        color: #373299;
+        color: $text-color;
     }
 
     figure {
@@ -71,14 +73,14 @@
         }
 
         .name {
-            font-family: Roboto;
-            font-size: 22px;
+            font-family: $text-font;
+            font-size: 32px;
             font-weight: 400;
             line-height: 25.78px;
             text-align: left;
             width: 100%;
             text-align: center;
-            color: #373299;
+            color: $text-color;
             text-transform: capitalize;
         }
     }
@@ -96,7 +98,7 @@
     }
 
     .description {
-        color: #373299;
+        color: $text-color;
         width: 350px;
 
         &.description-title {

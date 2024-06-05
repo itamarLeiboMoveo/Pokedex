@@ -2,14 +2,13 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./PokeCard.scss";
 import Type from "./Type.tsx";
-// import "../../../../services/StatsDisplay.tsx"
 import StatsDisplay from '../../../../services/StatsDisplay.tsx';
 
 function PokeCard({ props, isInternal }) {
     const navigate = useNavigate();
     function handleClicked() {
         if (isInternal) return;
-        navigate('internal-page', { state: props })
+        navigate('internal-page/' + props.id);
     }
     return (
         <div className={`description-card ${isInternal ? 'internal-card' : 'regular-card'}`} onClick={handleClicked}>
@@ -21,15 +20,15 @@ function PokeCard({ props, isInternal }) {
                 </figure>
                 {isInternal && (
                     <div className='types'>
-                        {props.types.map((type, index) => (
-                            <Type typeName={type}> {type} </Type>
+                        {props.types.map(type => (
+                            <Type key={type} typeName={type}> {type} </Type>
                         ))}
                     </div>
                 )}
             </div>
             <div className='line'></div>
 
-            {isInternal && (                    
+            {isInternal && (
                 <div className="side-content">
                     <h1 className='description description-title'>Description</h1>
                     <p className='description description-text'>{props.description}</p>

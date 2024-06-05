@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 
 interface active{
-    active?: string ;
+    active?: boolean ;
 }
 
 export const Container = styled.div`
@@ -14,15 +14,6 @@ export const Container = styled.div`
   background-color: #020166; ;
 `;
 
-// export const Container = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   width: 100%;
-//   height: 67px;
-//   background-color:#020166 ;
-// `;
-
 export const StyledImg = styled.img`
   height: 100%;
   margin-left: 110px;
@@ -33,12 +24,13 @@ export const ButtonContainer = styled.div`
   gap: 10px;
   margin-right: 150px;
   width: 92px;
-  background-color: #020166;
+  height: 100%;
   `;
 
 export const StyledButton = styled.button<active>`
     color: #F7F7F9;
-    background-color: ${({ active }) => (active ? 'green' : '#020166')} ;
     border: none;
     font-size: 16px;
+    cursor: pointer;
+    background-color: ${({ active }) => (active ? 'green' : '#020166')} ;
 `;

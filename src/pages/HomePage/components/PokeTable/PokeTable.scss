@@ -2,6 +2,8 @@ ul{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, auto);  
-  gap: 32px;
-  padding: 32px; 
+  grid-gap: 32px;
+  padding: 32px;
+  margin-left: 50px;
+  margin-right: 50px; 
 }

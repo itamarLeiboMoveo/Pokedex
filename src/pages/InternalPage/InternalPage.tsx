@@ -1,17 +1,29 @@
-import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useLocation, Link, useParams } from 'react-router-dom';
 import PokeCard from '../HomePage/components/PokeCard/PokeCard.tsx';
 import NavBar from '../../components/NavBar/NavBar.tsx';
+import { getPokemon } from '../../services/FetchService.tsx';
+import '../../services/pokemonTypes.tsx';
+
 import './InternalPage.scss';
 
 function InternalPage() {
-    const location = useLocation();
+    const { pokeId } = useParams();
+    const [pokemonProps, setPokemonProps] = useState<pokemon>();
+
+    useEffect(() => {
+        async function getPokemonProps() {
+            const data = await getPokemon(pokeId);
+            setPokemonProps(data);
+        }
+        getPokemonProps();
+    }, [pokeId]);
+
     return (
         <div>
             <NavBar />
-            {/* <button className='home'> ← Home Page</button> */}
             <div className='link-div'><Link to="/" className={"home"} >← Home Page</Link></div>
-            <PokeCard props={location.state} isInternal={true} />
+            {pokemonProps && <PokeCard key={pokeId} props={pokemonProps} isInternal={true} />}
         </div>
     );
 }
