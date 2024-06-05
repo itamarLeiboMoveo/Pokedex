@@ -38,14 +38,14 @@ async function fetchPokemons() {
     const pokemons: pokemon[] = [];
     try {
         const pokemonList = await getPokemonsList(); 
-        const typesArray: string[] = [];
         for (let i = 0; i < 100; i++) {
+            const typesArray: string[] = [];
             const pokemonObj = pokemonList[i];
             const data2 = await fetch(pokemonObj.url);
             const pokemonData = await data2.json();
             pokemonData.types.forEach((type) => {
-                console.log(typesArray);
-                typesArray.push(type.type.name)
+                // console.log(typesArray);
+                typesArray.push(type.type.name);
             });
             
             const stats = {

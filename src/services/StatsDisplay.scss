@@ -1,0 +1,13 @@
+.stats, h3{
+    display:grid;
+    margin-bottom: 32px;
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    grid-auto-flow: column;
+    color: #373299;
+}
+h3{
+    margin-top: 46px;
+    margin-bottom: 0;
+}

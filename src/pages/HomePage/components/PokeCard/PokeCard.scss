@@ -8,34 +8,30 @@
     box-shadow: 2px 2px 4px 0px #00000026;
     background-color: #00000010;
     padding: 20px;
-    &:hover {
-        cursor: pointer;
-        scale: 1.1;
-    } 
 
     &.regular-card {
         width: 267.29px;
         height: 255px;
+
+        &:hover {
+            cursor: pointer;
+            scale: 1.05;
+        }
     }
 
     &.internal-card {
         width: 844px;
-        height: auto; 
-        flex-direction: row; 
+        height: 342;
+        flex-direction: row;
         align-items: flex-start;
         justify-content: space-between;
+        margin-left: 110px;
     }
 
     .main-content {
-        // display: flex;
-        // flex-direction: column;
-        // align-items: center;
-        // justify-content: center;
-        // border-radius: 10px;
-        // box-shadow: 2px 2px 4px 0px #00000026;
-        // background-color: #00000010;
-
-        
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
     }
 
     .side-content {
@@ -43,7 +39,7 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        margin-left: 20px; 
+        margin-left: 20px;
     }
 
 
@@ -60,73 +56,56 @@
         color: #373299;
     }
 
-    .img {
-        flex: 1 0 auto;
+    figure {
         display: flex;
         align-items: center;
+        flex-direction: column;
+
+        .img {
+            flex: 1 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 250px;
+            height: 250px;
+        }
+
+        .name {
+            font-family: Roboto;
+            font-size: 22px;
+            font-weight: 400;
+            line-height: 25.78px;
+            text-align: left;
+            width: 100%;
+            text-align: center;
+            color: #373299;
+            text-transform: capitalize;
+        }
+    }
+
+    .types {
+        display: flex;
+        flex-direction: row;
         justify-content: center;
-        max-width: 100%;
-        max-height: 100%;
-        width: 200px;
-        height: 200px;
     }
 
-    .name {
-        font-family: Roboto;
-        font-size: 22px;
-        font-weight: 400;
-        line-height: 25.78px;
-        text-align: left;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        text-align: center;
+    .line {
+        border: 1px solid rgba(215, 215, 215, 1);
+        height: 280px;
+        margin-top: 45px;
+    }
+
+    .description {
         color: #373299;
-        text-transform: capitalize;
+        width: 350px;
+
+        &.description-title {
+            margin-top: 46px;
+        }
+
+        &.description-text {
+            margin: 0;
+        }
     }
 
-    .type {
-        display: inline-block;
-        margin-right: 10px;
-        width: 100px;
-        height: 35px;
-        top: 277px;
-        left: 37px;
-        gap: 0px;
-        border-radius: 9px 0px 0px 0px;
-        opacity: 0px;
-    }
 }
-
-
-// $pokemon-type-colors: (
-//     normal: #A8A77A,
-//     fire: #EE8130,
-//     water: #6390F0,
-//     electric: #F7D02C,
-//     grass: #7AC74C,
-//     ice: #96D9D6,
-//     fighting: #C22E28,
-//     poison: #A33EA1,
-//     ground: #E2BF65,
-//     flying: #A98FF3,
-//     psychic: #F95587,
-//     bug: #A6B91A,
-//     rock: #B6A136,
-//     ghost: #735797,
-//     dragon: #6F35FC,
-//     dark: #705746,
-//     steel: #B7B7CE,
-//     fairy: #D685AD
-// );
-
-// @each $type, $color in $pokemon-type-colors {
-//     .type {
-//         &.type-#{$type} {
-//             color: $color;
-//         }
-//     }
-// }
-
-
-// .description {}
