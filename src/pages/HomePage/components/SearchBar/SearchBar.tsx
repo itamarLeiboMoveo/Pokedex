@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import fetchPokemons, { getPokemonsDict, getPokemonsList } from '../../../../services/FetchService.tsx';
 import './SearchBar.scss';
 
-function SearchBar({ setFilteredPokemons}) {
+function SearchBar({ setFilteredPokemons }) {
     const [pokeArr, setPokeArr] = useState<pokemon[]>([]);
     const [pokeName, setPokeName] = useState('');
-    // const [filteredPokemons, setFilteredPokemons] = useState<pokemon[]>([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -23,7 +22,7 @@ function SearchBar({ setFilteredPokemons}) {
             if (pokeName === '') {
                 setFilteredPokemons(pokeArr);
             } else {
-                const filtered = pokeArr.filter(poke => poke.name.toLowerCase().startsWith(pokeName.toLowerCase()));
+                const filtered = pokeArr.filter(poke => poke.name.toLowerCase().includes(pokeName.toLowerCase()));
                 setFilteredPokemons(filtered);
             }
         };
@@ -41,7 +40,7 @@ function SearchBar({ setFilteredPokemons}) {
         }
     }
 
-    function handleInput(event){
+    function handleInput(event) {
         setPokeName(event.target.value);
 
     }
@@ -50,6 +49,9 @@ function SearchBar({ setFilteredPokemons}) {
         <div >
             <form className='search-container' onSubmit={handleSubmit}>
                 <input value={pokeName} type='text' onChange={handleInput} />
+                {/* <div class="dropdown-content">
+                    <button >Link 1</button>
+                </div> */}
                 <button >Search</button>
             </form>
         </div>
