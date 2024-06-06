@@ -9,7 +9,7 @@ type StatsProps = {
 function StatsDisplay({ stats }) {
   return (
     <div>
-      <h3>stats:</h3>
+      <h3>stats</h3>
       <div className="stats">
 
         <div className="stat">

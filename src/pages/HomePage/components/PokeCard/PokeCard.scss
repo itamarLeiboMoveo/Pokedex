@@ -28,6 +28,11 @@
         align-items: flex-start;
         justify-content: space-between;
         margin-left: 110px;
+        @media(max-width: 995px){
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+        }
     }
 
     .main-content {
@@ -95,6 +100,11 @@
         border: 1px solid rgba(215, 215, 215, 1);
         height: 280px;
         margin-top: 45px;
+        @media(max-width: 995px){
+            width: 80%; 
+             height: 0.05px; 
+            margin-top: 20px;
+        }
     }
 
     .description {
@@ -108,6 +118,15 @@
         &.description-text {
             margin: 0;
         }
+
+        @media(max-width: 995px){
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
     }
+
+    
 
 }

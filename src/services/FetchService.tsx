@@ -69,47 +69,13 @@ async function fetchPokemons() {
     const pokemons: pokemon[] = [];
     try {
         const pokemonList = await getPokemonsList();
-        for (let i = 0; i < 100; i++) {
-            const typesArray: string[] = [];
-            const pokemonObj = pokemonList[i];
-            const data2 = await fetch(pokemonObj.url);
-            const pokemonData = await data2.json();
-            pokemonData.types.forEach((type) => {
-                typesArray.push(type.type.name);
-            });
+        for (const poke of pokemonList) {
+            const data = await fetch(poke.url);
+            const pokemonData = await data.json();
+            const pokemonObj: pokemon = (await getPokemon(pokemonData.id))!;
 
-            const stats = {
-                hp: pokemonData.stats[0].base_stat,
-                attack: pokemonData.stats[1].base_stat,
-                defense: pokemonData.stats[2].base_stat,
-                special_atk: pokemonData.stats[3].base_stat,
-                special_def: pokemonData.stats[4].base_stat,
-                speed: pokemonData.stats[5].base_stat,
-                total: pokemonData.stats[0].base_stat
-                    + pokemonData.stats[1].base_stat
-                    + pokemonData.stats[2].base_stat
-                    + pokemonData.stats[3].base_stat
-                    + pokemonData.stats[4].base_stat
-                    + pokemonData.stats[5].base_stat
-            }
-
-            const descData = await fetch('https://pokeapi.co/api/v2/pokemon-species/' + pokemonData.name);
-            const pokemonSpecies = await descData.json();
-            const description = pokemonSpecies.flavor_text_entries[0].flavor_text;
-
-            pokemons.push({
-                id: pokemonData.id,
-                img: pokemonData.sprites.front_default,
-                name: pokemonData.name,
-                types: typesArray,
-                description,
-                stats
-            });
-
-            // const pokemonData: pokemon = (await getPokemon(pokemonList[i]))!;
-
-            // if(pokemonData)
-            //     pokemons.push(pokemonData);
+            if(pokemonObj)
+                pokemons.push(pokemonObj);
         }
     }
     catch (error) {

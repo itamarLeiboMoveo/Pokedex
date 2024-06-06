@@ -26,14 +26,16 @@ function PokeCard({ props, isInternal }) {
                     </div>
                 )}
             </div>
-            <div className='line'></div>
-
             {isInternal && (
-                <div className="side-content">
-                    <h1 className='description description-title'>Description</h1>
-                    <p className='description description-text'>{props.description}</p>
-                    <StatsDisplay stats={props.stats} />
-                </div>
+                <>
+                    <div className='line'></div>
+
+                    <div className="side-content">
+                        <h1 className='description description-title'>Description</h1>
+                        <p className='description description-text'>{props.description}</p>
+                        <StatsDisplay stats={props.stats} />
+                    </div>
+                </>
             )}
         </div>
 

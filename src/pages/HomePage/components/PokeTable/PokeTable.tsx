@@ -4,7 +4,7 @@ import fetchPokemons from "../../../../services/FetchService.tsx";
 import "../../../../services/pokemonTypes.tsx";
 import "./PokeTable.scss"
 
-function PokeTable( {filteredPokemons} ) {
+function PokeTable({ filteredPokemons }) {
     const [pokeArr, setPokeArr] = useState<pokemon[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -29,13 +29,15 @@ function PokeTable( {filteredPokemons} ) {
     }
 
     return (
-        <ul>
-          {pokeArr.map((poke) => (
-            <PokeCard key={poke.id} props={poke} isInternal={false} />
-          ))}
-        </ul>
-      );
-        
+        <div className='poke-table-container'>
+            <ul>
+                {pokeArr.map((poke) => (
+                    <PokeCard key={poke.id} props={poke} isInternal={false} />
+                ))}
+            </ul>
+        </div>
+    );
+
 }
 
 export default PokeTable;
