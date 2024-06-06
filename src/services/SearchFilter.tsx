@@ -1,7 +1,7 @@
 import fetchPokemons from './FetchService.tsx';
 
-export async function getPokemons(setPokeArr, setFilteredPokemons) {
-    const data = await fetchPokemons();
+export async function getPokemons(pokeArr, setPokeArr, setFilteredPokemons) {
+    const data = await fetchPokemons(pokeArr.length);
     setPokeArr(data);
     setFilteredPokemons(data);
 }

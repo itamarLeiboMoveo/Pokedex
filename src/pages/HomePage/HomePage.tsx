@@ -12,9 +12,10 @@ function HomePage() {
     return (
         <>
             <NavBar />
-            <SearchBar setFilteredPokemons={handleFilteredPokemons}/>
+            <SearchBar setFilteredPokemons={handleFilteredPokemons} />
             <PokeTable filteredPokemons={filteredPokemons} />
         </>
+
     );
 }
 

@@ -11,7 +11,7 @@ function SearchBar({ setFilteredPokemons }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        getPokemons(setPokeArr, setFilteredPokemons);
+        getPokemons(pokeArr, setPokeArr, setFilteredPokemons);
     }, [setFilteredPokemons]);
 
     useEffect(() => {
