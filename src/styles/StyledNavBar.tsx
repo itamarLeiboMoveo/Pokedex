@@ -35,14 +35,6 @@ export const StyledImg = styled.img`
       margin: 0 auto;
       
     }
-
-    @media (max-width: 555px) {
-      width: 330px; 
-      max-width: none; 
-      height: 100%; 
-      margin-left: 110px; 
-      margin-right: 110px; 
-    }
   }
 `;
 
