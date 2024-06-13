@@ -1,3 +1,5 @@
+@import "../styles/styleVariables.scss";
+
 .stats {
     display: grid;
 
@@ -7,7 +9,7 @@
     grid-auto-flow: column;
     color: #373299;
 
-    @media(max-width: 995px) {
+    @media(max-width: $desktop) {
         align-items: center;
         margin-left: 90px;
         display: flex;
@@ -22,9 +24,8 @@ h3 {
     margin-bottom: 32px;
     margin-top: 46px;
 
-    @media(max-width: 995px) {
+    @media(max-width: $desktop) {
         align-items: center;
-        // justify-content: center;
         margin-left: 145px;
 
     }

@@ -12,7 +12,7 @@ export const Container = styled.div`
   width: 100%;
   height: 67px;
   background-color: #020166;
-  @media (max-width: 640px){
+  @media (max-width: 900px){
     display: none;
   }
 `;
@@ -24,7 +24,7 @@ export const StyledImg = styled.img`
     display: none;
     visibility: hidden;
 
-    @media (max-width: 640px) {
+    @media (max-width: 900px) {
       display: block;
       visibility: visible;
       margin-left: 0;
@@ -34,14 +34,6 @@ export const StyledImg = styled.img`
       max-width: 100%;
       margin: 0 auto;
       
-    }
-
-    @media (max-width: 555px) {
-      width: 330px; 
-      max-width: none; 
-      height: 100%; 
-      margin-left: 110px; 
-      margin-right: 110px; 
     }
   }
 `;

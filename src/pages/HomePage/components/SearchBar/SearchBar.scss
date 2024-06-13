@@ -1,13 +1,10 @@
+@import "../../../../styles/styleVariables.scss";
+
 .search-container {
     display: flex;
     justify-content: center;
     margin-top: 40px;
     height: 30px;
-
-    @media(max-width: 555px){
-        width:500px;
-        margin-left: 30px;
-    }
 }
 
 input {
@@ -17,9 +14,6 @@ input {
     border-width: 1px;
     background-color: #00000010;
     margin-right: 5px;
-    @media (max-width: 640px){
-        width: 200px;
-    }
 }
 
 .search {
