@@ -8,8 +8,8 @@ function NavBar() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const isHomeActive = location.pathname === '/' || location.pathname.startsWith('/internal-page');
-    const isFavoritesActive = location.pathname === '/favorites';
+    const isHomeActive = (location.pathname === '/' || location.pathname.startsWith('/internal-page')) ? "true":"false";
+    const isFavoritesActive = (location.pathname === '/favorites') ? "true" : "false";
     const imgUrl = "https://user-images.githubusercontent.com/29473781/180619084-a56960ab-7efa-4e34-9d33-4e3e581d62ff.png";
 
     const handleHome = () => {

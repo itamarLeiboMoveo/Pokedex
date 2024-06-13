@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 
 interface active {
-  active?: boolean;
+  active: string;
 }
 
 export const Container = styled.div`
@@ -59,5 +59,5 @@ export const StyledButton = styled.button<active>`
     border: none;
     font-size: 16px;
     cursor: pointer;
-    background-color: ${({ active }) => (active ? 'green' : '#020166')} ;
+    background-color: ${({ active }) => (active==="true" ? 'green' : '#020166')} ;
 `;
