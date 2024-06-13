@@ -1,22 +1,9 @@
 
-export async function getPokemonsList() {
+export async function getPokemonsList(offset : number) {
     try {
-        const data = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100&offset=0');
+        const data = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset}`);
         const pokemonList = await data.json();
         return pokemonList.results;
-    }
-    catch (error) {
-        console.error('Error fetching Pokémon data:', error);
-    }
-}
-
-export async function getPokemonsDict() {
-    try {
-        const data = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100&offset=0');
-        const pokemonList = await data.json();
-        const dict = {};
-        pokemonList.results.forEach((name, url) => dict[name] = url);
-        return dict; //returns a dictionary of names and url's
     }
     catch (error) {
         console.error('Error fetching Pokémon data:', error);
@@ -65,10 +52,10 @@ export async function getPokemon(pokeId) {
     }
 }
 
-async function fetchPokemons() {
+async function fetchPokemons({ offset }: { offset: number })  {
     const pokemons: pokemon[] = [];
     try {
-        const pokemonList = await getPokemonsList();
+        const pokemonList = await getPokemonsList(offset);
         for (const poke of pokemonList) {
             const data = await fetch(poke.url);
             const pokemonData = await data.json();

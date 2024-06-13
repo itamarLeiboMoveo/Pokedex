@@ -1,35 +1,60 @@
+@import "../../../../styles/styleVariables.scss";
+
 .poke-table-container {
-    display: flex;
-    justify-content: center;
-    padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+.load_more {
+  margin-bottom: 30px;
+  width: 200px;
+  color: $blue;
+  background-color: white;
+  padding: 5px;
+  border: 1px solid $blue;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f0f0f0;
   }
+}
 
 ul {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto;  
-    grid-gap: 32px;
-    padding: 32px;
-  
-    @media (max-width: 1325px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  
-    @media (max-width: 990px) {
-      grid-template-columns: repeat(2, 1fr);
-      padding: 16px;
-      margin-left: 20px;
-      margin-right: 20px;
-      grid-gap: 24px;
-    }
-  
-    @media (max-width: 640px) {
-      grid-template-columns: 1fr;
-      padding: 16px;
-      margin-left: 20px;
-      margin-right: 20px;
-      grid-gap: 16px;
-    }
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 32px;
+  padding: 32px;
+
+  @media (max-width: 1325px) {
+    grid-template-columns: repeat(3, 1fr);
   }
-  
-  
+
+  @media (max-width: 990px) {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 16px;
+    margin-left: 20px;
+    margin-right: 20px;
+    grid-gap: 24px;
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    margin-left: 20px;
+    margin-right: 20px;
+    grid-gap: 16px;
+  }
+
+  @media (max-width: 555px) {
+    max-width: 100%;
+    margin: 0 auto;
+    grid-template-columns: 1fr;
+    padding: 16px;
+    grid-gap: 16px;
+  }
+}

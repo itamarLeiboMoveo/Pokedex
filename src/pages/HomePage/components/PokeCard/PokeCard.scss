@@ -60,7 +60,7 @@
         top: 0;
         left: 0;
         margin: 10px;
-        color: $text-color;
+        color: $blue;
     }
 
     figure {
@@ -85,7 +85,7 @@
             text-align: left;
             width: 100%;
             text-align: center;
-            color: $text-color;
+            color: $blue;
             text-transform: capitalize;
         }
     }
@@ -108,7 +108,7 @@
     }
 
     .description {
-        color: $text-color;
+        color: $blue;
         width: 350px;
 
         &.description-title {
