@@ -5,6 +5,8 @@ interface active {
   active: string;
 }
 
+var desktop = '900px';
+
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
@@ -12,7 +14,7 @@ export const Container = styled.div`
   width: 100%;
   height: 67px;
   background-color: #020166;
-  @media (max-width: 900px){
+  @media (max-width: ${desktop}){
     display: none;
   }
 `;
@@ -24,7 +26,7 @@ export const StyledImg = styled.img`
     display: none;
     visibility: hidden;
 
-    @media (max-width: 900px) {
+    @media (max-width: ${desktop}) {
       display: block;
       visibility: visible;
       margin-left: 0;
