@@ -28,7 +28,7 @@
         align-items: flex-start;
         justify-content: space-between;
         margin-left: 110px;
-        @media(max-width: 995px){
+        @media(max-width: $desktop){
             flex-direction: column;
             align-items: center;
             width: 300px;
@@ -100,7 +100,7 @@
         border: 1px solid rgba(215, 215, 215, 1);
         height: 280px;
         margin-top: 45px;
-        @media(max-width: 995px){
+        @media(max-width: $desktop){
             width: 80%; 
              height: 0.05px; 
             margin-top: 20px;
@@ -119,7 +119,7 @@
             margin: 0;
         }
 
-        @media(max-width: 995px){
+        @media(max-width: $desktop){
             display: flex;
             align-items: center;
             justify-content: center;

@@ -2,8 +2,10 @@ import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 
 interface active {
-  active?: boolean;
+  active: string;
 }
+
+var desktop = '900px';
 
 export const Container = styled.div`
   display: flex;
@@ -12,7 +14,7 @@ export const Container = styled.div`
   width: 100%;
   height: 67px;
   background-color: #020166;
-  @media (max-width: 640px){
+  @media (max-width: ${desktop}){
     display: none;
   }
 `;
@@ -24,7 +26,7 @@ export const StyledImg = styled.img`
     display: none;
     visibility: hidden;
 
-    @media (max-width: 640px) {
+    @media (max-width: ${desktop}) {
       display: block;
       visibility: visible;
       margin-left: 0;
@@ -51,5 +53,5 @@ export const StyledButton = styled.button<active>`
     border: none;
     font-size: 16px;
     cursor: pointer;
-    background-color: ${({ active }) => (active ? 'green' : '#020166')} ;
+    background-color: ${({ active }) => (active==="true" ? 'green' : '#020166')} ;
 `;

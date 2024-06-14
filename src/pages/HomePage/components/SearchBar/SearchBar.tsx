@@ -4,15 +4,10 @@ import { getPokemons, filterPokemons, filterTypes } from '../../../../services/S
 import './SearchBar.scss';
 import DropDown from './DropDown.tsx';
 
-function SearchBar({ setFilteredPokemons }) {
-    const [pokeArr, setPokeArr] = useState<pokemon[]>([]);
+function SearchBar({ pokeArr, setFilteredPokemons }) {
     const [pokeName, setPokeName] = useState('');
     const [selectedType, setSelectedType] = useState('');
     const navigate = useNavigate();
-
-    useEffect(() => {
-        getPokemons(pokeArr, setPokeArr, setFilteredPokemons);
-    }, [setFilteredPokemons]);
 
     useEffect(() => {
         filterPokemons(pokeName, pokeArr, setFilteredPokemons);
