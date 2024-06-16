@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleMap, LoadScript, MarkerF, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, MarkerF, DirectionsService, DirectionsRenderer, InfoWindow, useLoadScript } from '@react-google-maps/api';
 import NavBar from '../../components/NavBar/NavBar.tsx';
 import { Link } from 'react-router-dom';
 import { usePokemonContext } from '../../context/PokemonContext.tsx';
-import moveoLogo from "./moveoLogo.png";
+import moveoLogo from './moveoLogo.png';
+import "./MapPage.scss";
 
+interface Position {
+  latitude: number;
+  longitude: number;
+}
+
+type CustomTravelMode = 'DRIVING' | 'WALKING';
 
 const containerStyle = {
   width: '800px',
-  height: '600px'
+  height: '600px',
 };
 
 const center = {
@@ -29,12 +36,19 @@ function getRandomPoint(): { latitude: number, longitude: number } {
 }
 
 function MapPage() {
-  const [directions, setDirections] = useState(null); 
   const { pokeArr } = usePokemonContext();
-  const [pokePositions, setPokePositions] = useState({});
+  const [pokePositions, setPokePositions] = useState<{ [key: number]: Position }>({});
+  const [selectedMarker, setSelectedMarker] = useState<pokemon | null>();
+  const [infoWindowOpen, setInfoWindowOpen] = useState(false);
+  const [directions, setDirections] = useState<google.maps.DirectionsResult | null>();
+  const [travelMode, setTravelMode] = useState<CustomTravelMode>('DRIVING');
+
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: "AIzaSyDPQZH7Xe_NjFHS8YnzYsX9v6Roo8xBQrM",
+  });
 
   useEffect(() => {
-    const positions = {};
+    const positions: { [key: number]: Position } = {};
     pokeArr.forEach(poke => {
       const randomPoint = getRandomPoint();
       positions[poke.id] = randomPoint;
@@ -42,33 +56,104 @@ function MapPage() {
     setPokePositions(positions);
   }, [pokeArr]);
 
-  pokeArr.forEach(poke => {
-    const randomPoint = getRandomPoint();
-    pokePositions[poke.id] = randomPoint;
-  })
+  const handleMarkerClick = (marker: pokemon) => {
+    setSelectedMarker(marker);
+    setInfoWindowOpen(true);
+  };
+
+  const handleGetDirections = () => {
+    setInfoWindowOpen(false)
+    if (selectedMarker && pokePositions[selectedMarker.id] && window.google && window.google.maps) {
+      const directionsService = new window.google.maps.DirectionsService();
+
+      const destination = {
+        lat: pokePositions[selectedMarker.id].latitude,
+        lng: pokePositions[selectedMarker.id].longitude
+      };
+
+      directionsService.route(
+        {
+          origin: { lat: 32.063928, lng: 34.772902 },
+          destination,
+          travelMode: travelMode === 'DRIVING' ? window.google.maps.TravelMode.DRIVING : window.google.maps.TravelMode.WALKING,
+        },
+        (result, status) => {
+          if (status === window.google.maps.DirectionsStatus.OK) {
+            setDirections(result);
+          } else {
+            console.error(`Directions request failed due to ${status}`);
+          }
+        }
+      );
+    }
+  };
+
+  const handleTravelModeChange = (mode: CustomTravelMode) => {
+    setTravelMode(mode);
+  };
+
+  if (loadError) {
+    return <div>Error loading Google Maps script</div>;
+  }
+
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
       <NavBar />
       <div className='link-div'><Link to="/" className={"home"} >← Home Page</Link></div>
-      <LoadScript googleMapsApiKey="AIzaSyDPQZH7Xe_NjFHS8YnzYsX9v6Roo8xBQrM">
+      <div className="body-container">
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
           zoom={11}
         >
-          <MarkerF 
-          position={{ lat: 32.063928, lng: 34.772902 }} 
-          icon={moveoLogo} />
+          <MarkerF
+            position={{ lat: 32.063928, lng: 34.772902 }}
+            icon={moveoLogo} />
           {pokeArr && pokeArr.map(poke => (
             <MarkerF
               key={poke.id}
-              position={{ lat: pokePositions[poke.id].latitude, lng: pokePositions[poke.id].longitude }}
+              position={{ lat: pokePositions[poke.id]?.latitude, lng: pokePositions[poke.id]?.longitude }}
               icon={poke.img}
+              onClick={() => handleMarkerClick(poke)}
             />
           ))}
+          {selectedMarker && infoWindowOpen && pokePositions[selectedMarker.id] && (
+            <InfoWindow
+              position={{ lat: pokePositions[selectedMarker.id].latitude, lng: pokePositions[selectedMarker.id].longitude }}
+              onCloseClick={() => setInfoWindowOpen(false)}
+            >
+              <div className='info'>
+                <img className='info-image' src={selectedMarker.img} />
+                <h3>{selectedMarker.name}</h3>
+                <button onClick={handleGetDirections}>Get Directions</button>
+                <div className='travel-mode'>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={travelMode === window.google.maps.TravelMode.DRIVING}
+                      onChange={() => handleTravelModeChange('DRIVING')}
+                    />
+                    Driving
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={travelMode === window.google.maps.TravelMode.WALKING}
+                      onChange={() => handleTravelModeChange('WALKING')}
+                    />
+                    Walking
+                  </label>
+                </div>
+              </div>
+            </InfoWindow>
+          )}
+          {directions && <DirectionsRenderer directions={directions} />}
         </GoogleMap>
-      </LoadScript>
+      </div>
     </div>
   )
 }
