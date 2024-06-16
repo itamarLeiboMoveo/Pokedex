@@ -2,12 +2,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import PokeTable from "./components/PokeTable/PokeTable.tsx";
 import NavBar from '../../components/NavBar/NavBar.tsx';
 import SearchBar from './components/SearchBar/SearchBar.tsx';
-
 import fetchPokemons from "../../services/FetchService.tsx";
+import { usePokemonContext } from "../../context/PokemonContext.tsx";
 
 
 function HomePage() {
-    const [pokeArr, setPokeArr] = useState<pokemon[]>([]);
+    const pokeContext = usePokemonContext();
+
+    const { pokeArr, setPokeArr } = pokeContext;
     const [filteredPokemons, setFilteredPokemons] = useState<pokemon[]>([]);
     const [loading, setLoading] = useState(true);
     const [offset, setOffset] = useState(20);
@@ -20,7 +22,7 @@ function HomePage() {
             setLoading(false);
         }
         getPokemons();
-    }, []);
+    }, [setPokeArr, setFilteredPokemons]);
 
     const handleLoadMore = useCallback(async () => {
         if(offset > 1300) return;
@@ -31,7 +33,7 @@ function HomePage() {
         setOffset((prevOff) => prevOff + 20);
         
         setLoading(false);
-    }, [offset]);
+    }, [offset, setPokeArr, setFilteredPokemons, setOffset]);
 
     if (loading) {
         return <div>Loading...</div>;

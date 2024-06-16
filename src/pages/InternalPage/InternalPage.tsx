@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, Link, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import PokeCard from '../HomePage/components/PokeCard/PokeCard.tsx';
 import NavBar from '../../components/NavBar/NavBar.tsx';
 import { getPokemon } from '../../services/FetchService.tsx';

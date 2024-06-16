@@ -4,6 +4,7 @@ import InternalPage from './pages/InternalPage/InternalPage.tsx';
 import { RouterProvider, createBrowserRouter , } from 'react-router-dom';
 import RootLayout from './pages/Root.tsx';
 import InternalRootLayout from './pages/InternalRoot.tsx';
+import MapPage from './pages/MapPage/MapPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: 'internal-page/:pokeId',
         element: <InternalPage />,
+      },
+      {
+        path: 'map',
+        element: <MapPage />
       }
     ]
   }
