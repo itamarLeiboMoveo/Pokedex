@@ -1,8 +1,9 @@
 .body-container {
     display: flex;
     justify-content: center;
-    height: 100vh; /* Ensure full viewport height */
-    align-items: center; /* Center vertically */
+    height: 100vh; 
+    align-items: flex-start;
+    margin-bottom: 50px; 
   }
   
   .info {
@@ -26,7 +27,7 @@
     text-align: center; 
   }
   
-  button {
+  .directions-button {
     margin-top: 10px; 
     padding: 8px 16px;
     border: none;

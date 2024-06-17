@@ -5,23 +5,7 @@ import { Link } from 'react-router-dom';
 import { usePokemonContext } from '../../context/PokemonContext.tsx';
 import moveoLogo from './moveoLogo.png';
 import "./MapPage.scss";
-
-interface Position {
-  latitude: number;
-  longitude: number;
-}
-
-type CustomTravelMode = 'DRIVING' | 'WALKING';
-
-const containerStyle = {
-  width: '800px',
-  height: '600px',
-};
-
-const center = {
-  lat: 32.08,
-  lng: 34.78
-};
+import { Position, CustomTravelMode, containerStyle, center, darkMapStyles, defaultMapStyles } from "../../services/mapVariables.tsx";
 
 function getRandomPoint(): { latitude: number, longitude: number } {
   const latMin = 32.020;
@@ -42,6 +26,16 @@ function MapPage() {
   const [infoWindowOpen, setInfoWindowOpen] = useState(false);
   const [directions, setDirections] = useState<google.maps.DirectionsResult | null>();
   const [travelMode, setTravelMode] = useState<CustomTravelMode>('DRIVING');
+  const [mapStyle, setMapStyle] = useState('default');
+  const [showMapTypeControl, setShowMapTypeControl] = useState(true);
+
+  const toggleMapStyle = () => {
+    setMapStyle(mapStyle === 'default' ? 'dark' : 'default');
+  };
+
+  const toggleMapTypeControl = () => {
+    setShowMapTypeControl(!showMapTypeControl);
+  };
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyDPQZH7Xe_NjFHS8YnzYsX9v6Roo8xBQrM",
@@ -108,7 +102,15 @@ function MapPage() {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={11}
+          zoom={13}
+          options={{
+            mapTypeControl: showMapTypeControl,
+            mapTypeControlOptions: {
+              style: window.google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+              position: window.google.maps.ControlPosition.TOP_LEFT,
+            },
+            styles: mapStyle === 'dark' ? darkMapStyles : defaultMapStyles
+          }}
         >
           <MarkerF
             position={{ lat: 32.063928, lng: 34.772902 }}
@@ -129,7 +131,7 @@ function MapPage() {
               <div className='info'>
                 <img className='info-image' src={selectedMarker.img} />
                 <h3>{selectedMarker.name}</h3>
-                <button onClick={handleGetDirections}>Get Directions</button>
+                <button className='directions-button' onClick={handleGetDirections}>Get Directions</button>
                 <div className='travel-mode'>
                   <label>
                     <input
@@ -152,6 +154,15 @@ function MapPage() {
             </InfoWindow>
           )}
           {directions && <DirectionsRenderer directions={directions} />}
+
+        <div style={{ position: 'absolute',display:'flex',flexDirection:'column',gap:10, bottom: 30, left: 10, zIndex: 1 }}>
+          <button onClick={toggleMapStyle}>
+            {mapStyle === 'default' ? 'Switch to Dark Style' : 'Switch to Default Style'}
+          </button>
+          <button onClick={toggleMapTypeControl}>
+            {showMapTypeControl ? 'Hide Map Type Control' : 'Show Map Type Control'}
+          </button>
+        </div>
         </GoogleMap>
       </div>
     </div>
