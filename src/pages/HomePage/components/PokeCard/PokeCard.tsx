@@ -8,7 +8,7 @@ function PokeCard({ props, isInternal }) {
     const navigate = useNavigate();
     function handleClicked() {
         if (isInternal) return;
-        navigate('internal-page/' + props.id);
+        navigate('pokemon/' + props.id);
     }
     return (
         <div className={`description-card ${isInternal ? 'internal-card' : 'regular-card'}`} onClick={handleClicked}>

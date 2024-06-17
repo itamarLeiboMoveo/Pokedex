@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getPokemons, filterPokemons, filterTypes } from '../../../../services/SearchFilter.tsx';
+import { filterPokemons, filterTypes } from '../../../../services/SearchFilter.tsx';
 import './SearchBar.scss';
 import DropDown from './DropDown.tsx';
 
@@ -22,9 +22,14 @@ function SearchBar({ pokeArr, setFilteredPokemons }) {
 
         const matchedPoke = pokeArr.find((poke) => poke.name === pokeName.toLowerCase());
         if (matchedPoke) {
-            navigate('/internal-page/' + matchedPoke.id);
+            navigate('/pokemon/' + matchedPoke.id);
         } else {
-            console.log('No match found');
+            if(pokeName.length === 0){
+                alert('Enter a PokeName!')
+            }
+            else{
+                alert('No match found!');
+            }
         }
     }
 

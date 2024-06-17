@@ -5,9 +5,9 @@ import NavBar from '../../components/NavBar/NavBar.tsx';
 import { getPokemon } from '../../services/FetchService.tsx';
 import '../../services/pokemonTypes.tsx';
 
-import './InternalPage.scss';
+import './PokemonPage.scss';
 
-function InternalPage() {
+function PokemonPage() {
     const { pokeId } = useParams();
     const [pokemonProps, setPokemonProps] = useState<pokemon>();
 
@@ -28,4 +28,4 @@ function InternalPage() {
     );
 }
 
-export default InternalPage;
+export default PokemonPage;

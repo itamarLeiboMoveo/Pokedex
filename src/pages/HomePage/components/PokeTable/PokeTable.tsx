@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PokeCard from "../PokeCard/PokeCard.tsx";
-import fetchPokemons from "../../../../services/FetchService.tsx";
 import "../../../../services/pokemonTypes.tsx";
 import "./PokeTable.scss"
 
-function PokeTable({ pokeArr, onLoadMore }) {
+function PokeTable({ pokeArr, onLoadMore, loadingMore }) {
     const [offset, setOffset] = useState(20);
-    const loadMoreRef = useRef<HTMLButtonElement>(null); 
+    const loadMoreRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
         if (pokeArr.length > 20 && loadMoreRef.current) {
@@ -26,7 +25,14 @@ function PokeTable({ pokeArr, onLoadMore }) {
                     <PokeCard key={poke.id} props={poke} isInternal={false} />
                 ))}
             </ul>
-            <button className="load_more" ref={loadMoreRef} onClick={handleMore}>Load more...</button>
+            <div className='load-div'>
+                <button className="load_more" ref={loadMoreRef} onClick={handleMore}>Load more...</button>
+                {loadingMore && (<div className="spinner">
+                    <span className="spinner-inner-1"></span>
+                    <span className="spinner-inner-2"></span>
+                    <span className="spinner-inner-3"></span>
+                </div>)}
+            </div>
         </div>
     );
 

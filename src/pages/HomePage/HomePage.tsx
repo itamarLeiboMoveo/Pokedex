@@ -1,40 +1,15 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import PokeTable from "./components/PokeTable/PokeTable.tsx";
 import NavBar from '../../components/NavBar/NavBar.tsx';
 import SearchBar from './components/SearchBar/SearchBar.tsx';
-import fetchPokemons from "../../services/FetchService.tsx";
 import { usePokemonContext } from "../../context/PokemonContext.tsx";
+import "./HomePage.scss";
 
 
 function HomePage() {
-    const pokeContext = usePokemonContext();
+    const { pokeArr, filteredPokemons, loading, loadingMore, handleLoadMore, setFilteredPokemons } = usePokemonContext();
 
-    const { pokeArr, setPokeArr } = pokeContext;
-    const [filteredPokemons, setFilteredPokemons] = useState<pokemon[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [offset, setOffset] = useState(20);
-
-    useEffect(() => {
-        async function getPokemons() {
-            const data = await fetchPokemons( {offset: 0} );
-            setPokeArr(data);
-            setFilteredPokemons(data);
-            setLoading(false);
-        }
-        getPokemons();
-    }, [setPokeArr, setFilteredPokemons]);
-
-    const handleLoadMore = useCallback(async () => {
-        if(offset > 1300) return;
-            setLoading(true);
-        const newPokemons = await fetchPokemons({ offset });
-        setPokeArr(prevPokeArr => [...prevPokeArr, ...newPokemons]);
-        setFilteredPokemons(prevPokeArr => [...prevPokeArr, ...newPokemons]);
-        setOffset((prevOff) => prevOff + 20);
-        
-        setLoading(false);
-    }, [offset, setPokeArr, setFilteredPokemons, setOffset]);
-
+    
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -42,8 +17,8 @@ function HomePage() {
     return (
         <>
             <NavBar />
-            <SearchBar pokeArr={pokeArr} setFilteredPokemons={setFilteredPokemons}/>
-            <PokeTable pokeArr={filteredPokemons} onLoadMore={handleLoadMore} />
+            <SearchBar pokeArr={pokeArr} setFilteredPokemons={setFilteredPokemons} />
+            <PokeTable pokeArr={filteredPokemons} onLoadMore={handleLoadMore} loadingMore={loadingMore} />
         </>
 
     );

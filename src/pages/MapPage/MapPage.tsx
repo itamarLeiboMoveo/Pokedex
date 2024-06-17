@@ -3,7 +3,7 @@ import { GoogleMap, LoadScript, MarkerF, DirectionsService, DirectionsRenderer }
 import NavBar from '../../components/NavBar/NavBar.tsx';
 import { Link } from 'react-router-dom';
 import { usePokemonContext } from '../../context/PokemonContext.tsx';
-import moveoLogo from "./moveoLogo.png";
+import moveoLogo from "../../../src/assets/moveoLogo.png";
 
 
 const containerStyle = {

@@ -1,52 +1,16 @@
-@import "../../../../styles/styleVariables.scss";
+$spinner: salmon;
+$background: white;
+$size: 30px;
 
-.poke-table-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 16px;
-}
-
-.load_more {
-  margin-bottom: 0px;
-  width: 200px;
-  color: $blue;
-  background-color: white;
-  padding: 5px;
-  border: 1px solid $blue;
-  border-radius: 5px;
-  cursor: pointer;
-  
-  &:hover {
-    background-color: #f0f0f0;
-  }
-}
-
-ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 32px;
-
-  padding: 0;
-  list-style-type: none;
-
-  @media (max-width: $desktop) {
-    gap: 16px;
-    padding: 16px;
-  }
-}
+html { background-color: $background; }
 
 .spinner {
-  position: absolute;
+  position: relative;
   top: calc(50% - #{$size / 2});
   left: calc(50% - #{$size / 2});
   width: $size;
   height: $size;
   animation: spinner 0.75s linear infinite;
-  margin-left: 4px;
-
 
   span {
     position: absolute;
@@ -76,11 +40,4 @@ ul {
 @keyframes spinner {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-.load-div{
-  position:relative;
-  display:flex;
-  align-items: center;
-  gap: 4px;
 }
