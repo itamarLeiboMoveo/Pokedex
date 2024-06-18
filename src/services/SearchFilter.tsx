@@ -6,23 +6,24 @@ export async function getPokemons(pokeArr, setPokeArr, setFilteredPokemons) {
     setFilteredPokemons(data);
 }
 
-export function filterPokemons(pokeName, pokeArr, setFilteredPokemons) {
+export function filterPokemons(pokeName: string, pokeArr: pokemon[], OGPokeTable: pokemon[]): pokemon[] {
     if (pokeName === '') {
-        setFilteredPokemons(pokeArr);
+        return OGPokeTable;
     } else {
         const filteredPrefix = pokeArr.filter(poke => poke.name.toLowerCase().startsWith(pokeName.toLowerCase()));
         const filtered = filteredPrefix.concat(pokeArr.filter(poke =>
             poke.name.toLowerCase().includes(pokeName.toLowerCase()) &&
             !filteredPrefix.includes(poke)));
-        setFilteredPokemons(filtered);
+            
+        return filtered;
     }
 }
 
-export function filterTypes(selectedType, pokeArr, setFilteredPokemons) {
+export function filterTypes(selectedType: string, pokeArr: pokemon[], OGPokeTable: pokemon[]): pokemon[] {
     if (selectedType === '') {
-        setFilteredPokemons(pokeArr);
+        return OGPokeTable;
     } else {
         const filtered = pokeArr.filter(poke => poke.types.includes(selectedType));
-        setFilteredPokemons(filtered);
+        return filtered;
     }
 }

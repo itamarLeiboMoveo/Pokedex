@@ -1,7 +1,7 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { Container, StyledImg, ButtonContainer, StyledButton } from "../../styles/StyledNavBar.tsx";
-import MapPage from '../../pages/MapPage/MapPage.tsx';
+import pokedexLogo from "../../../src/assets/pokedexLogo.svg";
 
 
 function NavBar() {
@@ -9,28 +9,21 @@ function NavBar() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const isHomeActive = (location.pathname === '/' || location.pathname.startsWith('/internal-page')) ? "true":"false";
+    const isHomeActive = (location.pathname === '/' || location.pathname.startsWith('/pokemon')) ? "true":"false";
     const isMapActive = (location.pathname === '/map') ? "true" : "false";
-    const isFavoritesActive = (location.pathname === '/favorites') ? "true" : "false";
-    const imgUrl = "https://user-images.githubusercontent.com/29473781/180619084-a56960ab-7efa-4e34-9d33-4e3e581d62ff.png";
 
-    const handleHome = () => {
-        navigate('/');
-    }
-
-    const handleMap = () => {
-        navigate('/map');
+    const handleNavigate = (path: string) => {
+        navigate(path);
     }
 
     return (
         <>
-            <StyledImg className="responsive" src={imgUrl} />
+            <StyledImg className="responsive" src={pokedexLogo} />
             <Container>
-                <StyledImg src={imgUrl} />
+                <StyledImg src={pokedexLogo} />
                 <ButtonContainer >
-                    <StyledButton active={isHomeActive} onClick={handleHome}>Home</StyledButton>
-                    <StyledButton active={isMapActive} onClick={handleMap}>Map</StyledButton>
-                    <StyledButton active={isFavoritesActive}>Favorites</StyledButton>
+                    <StyledButton active={isHomeActive} onClick={() => handleNavigate('/')}>Home</StyledButton>
+                    <StyledButton active={isMapActive} onClick={() => handleNavigate('/map')}>Map</StyledButton>
                 </ButtonContainer>
             </Container>
         </>

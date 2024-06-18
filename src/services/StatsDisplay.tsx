@@ -7,32 +7,26 @@ type StatsProps = {
 };
 
 function StatsDisplay({ stats }) {
+
+  const statNames = [
+    { label: 'HP', key: 'hp' },
+    { label: 'Attack', key: 'attack' },
+    { label: 'Defense', key: 'defense' },
+    { label: 'Special Attack', key: 'special_atk' },
+    { label: 'Special Defense', key: 'special_def' },
+    { label: 'Speed', key: 'speed' },
+    { label: 'Total', key: 'total' },
+  ];
+
   return (
     <div>
       <h3>stats</h3>
       <div className="stats">
-
-        <div className="stat">
-          <strong>HP:</strong> {stats.hp}
-        </div>
-        <div className="stat">
-          <strong>Attack:</strong> {stats.attack}
-        </div>
-        <div className="stat">
-          <strong>Defense:</strong> {stats.defense}
-        </div>
-        <div className="stat">
-          <strong>Special Attack:</strong> {stats.special_atk}
-        </div>
-        <div className="stat">
-          <strong>Special Defense:</strong> {stats.special_def}
-        </div>
-        <div className="stat">
-          <strong>Speed:</strong> {stats.speed}
-        </div>
-        <div className="stat">
-          <strong>Total:</strong> {stats.total}
-        </div>
+        {statNames.map((stat) => (
+          <div className="stat" key={stat.key}>
+            <strong>{stat.label}:</strong> {stats[stat.key]}
+          </div>
+        ))}
       </div>
     </div>
   );
