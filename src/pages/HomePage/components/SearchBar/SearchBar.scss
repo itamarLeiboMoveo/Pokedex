@@ -1,0 +1,24 @@
+@import "../../../../styles/styleVariables.scss";
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    height: 30px;
+}
+
+input {
+    width: 340px;
+    border-radius: 10px;
+    border-color: #02016680;
+    border-width: 1px;
+    background-color: #00000010;
+    margin-right: 5px;
+}
+
+.search {
+    background-color: #373299;
+    border-radius: 10px;
+    color: #F7F7F9;
+    cursor: pointer;
+}

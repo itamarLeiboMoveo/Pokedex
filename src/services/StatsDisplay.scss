@@ -1,0 +1,31 @@
+@import "../styles/styleVariables.scss";
+
+.stats {
+    display: grid;
+
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    grid-auto-flow: column;
+    color: #373299;
+
+    @media(max-width: $desktop) {
+        align-items: center;
+        margin-left: 90px;
+        display: flex;
+        flex-direction: column;
+
+    }
+}
+
+h3 {
+    display: flex;
+    color: #373299;
+    margin-bottom: 32px;
+    margin-top: 46px;
+
+    @media(max-width: $desktop) {
+        align-items: center;
+        margin-left: 145px;
+    }
+}

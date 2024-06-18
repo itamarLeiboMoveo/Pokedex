@@ -1,13 +1,17 @@
 import React from 'react';
-import { Outlet, useNavigation } from 'react-router-dom';
-
+import { Outlet } from 'react-router-dom';
+import { StyleSheetManager } from 'styled-components';
+import "../../src/context/PokemonContext.tsx";
+import { PokemonProvider } from '../../src/context/PokemonContext.tsx';
 
 function RootLayout() {
-  // const navigation = useNavigation();
-
   return (
     <>
-        <Outlet />
+      <StyleSheetManager shouldForwardProp={(prop) => prop !== 'active'}>
+        <PokemonProvider>
+          <Outlet />
+        </PokemonProvider>
+      </StyleSheetManager>
     </>
   );
 }
