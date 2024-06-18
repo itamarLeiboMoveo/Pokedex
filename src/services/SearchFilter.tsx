@@ -23,7 +23,7 @@ export function filterTypes(selectedType: string, pokeArr: pokemon[], OGPokeTabl
     if (selectedType === '') {
         return OGPokeTable;
     } else {
-        const filtered = pokeArr.filter(poke => poke.types.includes(selectedType));
+        const filtered = OGPokeTable.filter(poke => poke.types.includes(selectedType));
         return filtered;
     }
 }

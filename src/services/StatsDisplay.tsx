@@ -2,10 +2,6 @@ import React from 'react';
 import './pokemonTypes.tsx';
 import './StatsDisplay.scss';
 
-type StatsProps = {
-  stats: stats;
-};
-
 function StatsDisplay({ stats }) {
 
   const statNames = [

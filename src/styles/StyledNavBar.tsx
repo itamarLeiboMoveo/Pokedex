@@ -42,7 +42,7 @@ export const StyledImg = styled.img`
 export const ButtonContainer = styled.div`
   display: flex;
   gap: 10px;
-  margin-right: 150px;
+  margin-right: 170px;
   width: 92px;
   height: 100%;
   `;

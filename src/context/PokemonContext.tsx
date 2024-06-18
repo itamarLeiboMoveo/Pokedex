@@ -13,12 +13,12 @@ interface PokemonContextType {
 
 const PokemonContext = createContext<PokemonContextType | undefined>(undefined);
 
-const PokemonProvider: React.FC<{children: ReactNode}> = ({ children }) => {
+const PokemonProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [pokeArr, setPokeArr] = useState<pokemon[]>([]);
     const [OGPokeTable, setOGPokeTable] = useState<pokemon[]>([]);
     const [loading, setLoading] = useState(true);
     const [loadingMore, setLoadingMore] = useState(false);
-    const [offset, setOffset] = useState(20);
+    const [offset, setOffset] = useState(12);
 
     useEffect(() => {
         async function getPokemons() {
@@ -35,10 +35,18 @@ const PokemonProvider: React.FC<{children: ReactNode}> = ({ children }) => {
         setLoadingMore(true);
         const newPokemons = await fetchPokemons({ offset });
         setPokeArr(prevPokeArr => [...prevPokeArr, ...newPokemons]);
-        setOffset((prevOff) => prevOff + 20);
+        setOffset((prevOff) => prevOff + 12);
         setOGPokeTable(prevPokeArr => [...prevPokeArr, ...newPokemons]);
         setLoadingMore(false);
+        setTimeout(scrollToBottom, 100);
     }, [offset]);
+
+    const scrollToBottom = () => {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    };
 
     return (
         <PokemonContext.Provider value={{ pokeArr, OGPokeTable, loading, loadingMore, offset, handleLoadMore, setPokeArr }}>

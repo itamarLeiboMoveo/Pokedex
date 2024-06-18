@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleMap, LoadScript, MarkerF, DirectionsService, DirectionsRenderer, InfoWindow, useLoadScript } from '@react-google-maps/api';
+import { GoogleMap, MarkerF, DirectionsRenderer, InfoWindow, useLoadScript } from '@react-google-maps/api';
 import NavBar from '../../components/NavBar/NavBar.tsx';
 import { Link } from 'react-router-dom';
 import { usePokemonContext } from '../../context/PokemonContext.tsx';
@@ -129,7 +129,7 @@ function MapPage() {
               onCloseClick={() => setInfoWindowOpen(false)}
             >
               <div className='info'>
-                <img className='info-image' src={selectedMarker.img} />
+                <img className='info-image' src={selectedMarker.img} alt="Pokemon"/>
                 <h3>{selectedMarker.name}</h3>
                 <button className='directions-button' onClick={handleGetDirections}>Get Directions</button>
                 <div className='travel-mode'>
