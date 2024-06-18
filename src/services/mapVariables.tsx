@@ -37,7 +37,22 @@ export const darkMapStyles = [
         stylers: [
             { color: '#444444' }
         ]
-    }
+    },
+    {
+      featureType: 'poi.park',
+      elementType: 'geometry',
+      stylers: [
+        { color: '#186318' } // Dark green parks
+      ]
+    },
+    {
+      featureType: 'all',
+      elementType: 'labels.text.fill',
+      stylers: [
+        { color: '#312f2f' } // White road names
+      ]
+    },
+    
 ];
 
 export const defaultMapStyles = [

@@ -6,7 +6,7 @@ import DropDown from './DropDown.tsx';
 import { usePokemonContext } from '../../../../context/PokemonContext.tsx';
 
 function SearchBar() {
-    const { pokeArr,OGPokeTable, setPokeArr, offset } = usePokemonContext();
+    const { pokeArr,OGPokeTable, setPokeArr } = usePokemonContext();
 
     const [pokeName, setPokeName] = useState('');
     const [selectedType, setSelectedType] = useState('');
