@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
 
 interface active {
   active: string;
@@ -52,6 +51,7 @@ export const StyledButton = styled.button<active>`
     color: #F7F7F9;
     border: none;
     font-size: 16px;
+    padding:24px;
     cursor: pointer;
     background-color: ${({ active }) => (active==="true" ? 'green' : '#020166')} ;
 `;
