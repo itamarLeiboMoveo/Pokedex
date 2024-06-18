@@ -2,20 +2,24 @@ import React, { useState, useEffect, useRef } from 'react';
 import PokeCard from "../PokeCard/PokeCard.tsx";
 import "../../../../services/pokemonTypes.tsx";
 import "./PokeTable.scss"
+import { usePokemonContext } from '../../../../context/PokemonContext.tsx';
 
-function PokeTable({ pokeArr, onLoadMore, loadingMore }) {
-    const [offset, setOffset] = useState(20);
-    const loadMoreRef = useRef<HTMLButtonElement>(null);
+function PokeTable() {
+    const { pokeArr, handleLoadMore, loadingMore } = usePokemonContext();
+    const [clickedLoadMore, setClickedLoadMore] = useState(false);
+    const loadMoreRef = useRef<HTMLButtonElement | null>(null);
 
     useEffect(() => {
-        if (pokeArr.length > 20 && loadMoreRef.current) {
+        if (pokeArr.length > 20 && loadMoreRef.current && clickedLoadMore) {
             loadMoreRef.current.scrollIntoView({ behavior: 'smooth' });
+            setClickedLoadMore(false);
         }
-    }, [pokeArr]);
+    }, [pokeArr, clickedLoadMore]);
 
-    const handleMore = () => {
-        onLoadMore();
-    }
+    const handleClickLoadMore = () => {
+        handleLoadMore();
+        setClickedLoadMore(true);
+    };
 
 
     return (
@@ -26,7 +30,7 @@ function PokeTable({ pokeArr, onLoadMore, loadingMore }) {
                 ))}
             </ul>
             <div className='load-div'>
-                <button className="load_more" ref={loadMoreRef} onClick={handleMore}>Load more...</button>
+                <button className="load_more" ref={loadMoreRef} onClick={handleClickLoadMore}>Load more...</button>
                 {loadingMore && (<div className="spinner">
                     <span className="spinner-inner-1"></span>
                     <span className="spinner-inner-2"></span>

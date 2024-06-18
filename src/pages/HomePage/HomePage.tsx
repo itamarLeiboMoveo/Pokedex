@@ -7,7 +7,7 @@ import "./HomePage.scss";
 
 
 function HomePage() {
-    const { pokeArr, filteredPokemons, loading, loadingMore, handleLoadMore, setFilteredPokemons } = usePokemonContext();
+    const { loading } = usePokemonContext();
 
     
     if (loading) {
@@ -17,8 +17,8 @@ function HomePage() {
     return (
         <>
             <NavBar />
-            <SearchBar pokeArr={pokeArr} setFilteredPokemons={setFilteredPokemons} />
-            <PokeTable pokeArr={filteredPokemons} onLoadMore={handleLoadMore} loadingMore={loadingMore} />
+            <SearchBar />
+            <PokeTable />
         </>
 
     );
