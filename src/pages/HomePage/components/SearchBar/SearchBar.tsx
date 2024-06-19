@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { filterPokemons, filterTypes } from '../../../../services/SearchFilter.tsx';
+import { filter } from '../../../../services/SearchFilter.tsx';
 import './SearchBar.scss';
 import DropDown from './DropDown.tsx';
 import { usePokemonContext } from '../../../../context/PokemonContext.tsx';
@@ -11,19 +11,12 @@ function SearchBar() {
     const [pokeName, setPokeName] = useState('');
     const [selectedType, setSelectedType] = useState('');
 
-
     const navigate = useNavigate();
 
     useEffect(() => {
-        const filtered = filterPokemons(pokeName, pokeArr, OGPokeTable);
-        setPokeArr(filtered);
-
-    }, [pokeName]);
-
-    useEffect(() => {
-        const filteredByType = filterTypes(selectedType, pokeArr, OGPokeTable);
-        setPokeArr(filteredByType);
-    }, [selectedType]);
+        const filterTable = filter(pokeName, selectedType, pokeArr, OGPokeTable);
+        setPokeArr(filterTable);
+    }, [pokeName, selectedType]);
 
     function handleSubmit(event) {
         event.preventDefault();

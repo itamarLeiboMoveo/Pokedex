@@ -16,7 +16,7 @@ function StatsDisplay({ stats }) {
 
   return (
     <div>
-      <h3>stats</h3>
+      <h3 className='stats-title'>stats</h3>
       <div className="stats">
         {statNames.map((stat) => (
           <div className="stat" key={stat.key}>

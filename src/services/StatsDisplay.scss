@@ -18,14 +18,15 @@
     }
 }
 
-h3 {
+.stats-title{
     display: flex;
     color: #373299;
     margin-bottom: 32px;
     margin-top: 46px;
 
     @media(max-width: $desktop) {
+        justify-content: center;
         align-items: center;
-        margin-left: 145px;
+        margin-left: 85px;;
     }
 }
