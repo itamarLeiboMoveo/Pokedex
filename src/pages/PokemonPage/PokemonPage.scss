@@ -1,3 +1,6 @@
+@import '../../styles/styleVariables.scss';
+
+
 a{
     margin-top: 40px;
     background-color:white;
@@ -8,6 +11,11 @@ a{
     cursor: pointer;
 }
 .link-div{
+    display: flex;
     margin: 40px;
     margin-left: 110px;
+    @media(max-width: $desktop){
+        justify-content: center;
+        margin-left: auto;
+    }
 }
